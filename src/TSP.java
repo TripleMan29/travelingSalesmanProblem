@@ -113,9 +113,11 @@ class TSP {
             for (int j = 0; j < pheromones.length; j++) {
                 for (int k = 0; k < pheromones.length; k++) {
                     double decrease = (1.0 - rho) * pheromones[j][k];
+                    pheromones[j][k] = decrease;
                     double increase = 0.0;
                     if (EdgesInTrail(j, k, ant)) {
                         increase = Q / length;
+                        pheromones[j][k] = increase;
                     }
                 }
             }
@@ -186,18 +188,18 @@ class TSP {
             n[i] = m[i] / sum;
         }
 
-        double[] cumul = new double[numCities + 1];
+        double[] g = new double[numCities + 1];
 
-        cumul[0] = 0;
+        g[0] = 0;
         for (int i = 0; i < numCities; i++){
-            cumul[i + 1] = cumul[i] + n[i];
+            g[i + 1] = g[i] + n[i];
         }
         int nxtCity = start;
         while(visited[nxtCity])
         {
             double p = Math.random();
-            for (int i = 0; i < cumul.length -1 ; ++i){
-                if(p >= cumul[i] && p < cumul[i + 1]){
+            for (int i = 0; i < g.length -1 ; ++i){
+                if(p >= g[i] && p < g[i + 1]){
                     nxtCity = i;
                 }
             }
