@@ -113,11 +113,13 @@ class TSP {
             for (int j = 0; j < pheromones.length; j++) {
                 for (int k = 0; k < pheromones.length; k++) {
                     double decrease = (1.0 - rho) * pheromones[j][k];
-                    pheromones[j][k] = decrease;
                     double increase = 0.0;
                     if (EdgesInTrail(j, k, ant)) {
                         increase = Q / length;
                         pheromones[j][k] = increase;
+                    }
+                    else {
+                        pheromones[j][k] = decrease;
                     }
                 }
             }
