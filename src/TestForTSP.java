@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class TestForTSP {
     @Test
     void randomGenerator() {
-        int numAnts = 20;
+        int numAnts = 39;
         int numCities = 39;
         int[][] distance = new int[numCities][numCities];
         for (int i = 0; i < numCities; i++) {
